@@ -2,8 +2,8 @@
 
 使用 https://github.com/xKiian/GeekedTest 此项目过验证，下载项目代码到本地，放在根目录下。
 
-captcha_solver.py: 实现登录，获取账号 Cookie
-checkin.py: 用 Cookie 签到
+- captcha_solver.py: 实现登录，获取账号 Cookie
+- checkin.py: 用 Cookie 签到
 
 ## 运行
 
