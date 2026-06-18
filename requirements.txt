@@ -1,0 +1,10 @@
+# 依赖
+httpx
+
+# GeekedTest 依赖
+opencv-python
+numpy
+requests
+pycryptodome
+curl_cffi
+ddddocr
