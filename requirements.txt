@@ -1,10 +1,5 @@
 # 依赖
 httpx
-
-# GeekedTest 依赖
-opencv-python
-numpy
+curl_cffi
 requests
 pycryptodome
-curl_cffi
-ddddocr

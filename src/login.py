@@ -1,9 +1,7 @@
 """
 极验 V4 验证码解决器 + ikuuu.org 登录
-使用 GeekedTest 项目的 sign.py 进行 w 参数加密
 """
 
-import sys
 import json
 import random
 import time
@@ -12,6 +10,8 @@ from pathlib import Path
 from uuid import uuid4
 from curl_cffi import requests
 import httpx
+
+from signer import Signer, lotParser
 
 # 项目根目录
 BASE_DIR = Path(__file__).parent.parent
@@ -25,13 +25,6 @@ if env_file.exists():
             if line and not line.startswith("#") and "=" in line:
                 key, value = line.split("=", 1)
                 os.environ.setdefault(key.strip(), value.strip())
-
-# 添加 GeekedTest 到路径（用于 w 参数加密）
-GEEKEDTEST_DIR = BASE_DIR / "GeekedTest"
-sys.path.insert(0, str(GEEKEDTEST_DIR))
-
-# 来自 GeekedTest 项目
-from geeked.sign import Signer, lotParser  # noqa: E402
 
 
 def load_accounts_from_env() -> list[dict]:
@@ -73,7 +66,6 @@ def sleep_random(min_ms: int = 500, max_ms: int = 1500):
 def solve_captcha(captcha_id: str = CAPTCHA_ID, max_retries: int = 10) -> dict:
     """
     解决验证码，返回 seccode
-    使用 GeekedTest 的 Signer 进行 w 参数加密
     """
     session = requests.Session(impersonate="chrome124")
 
@@ -97,7 +89,7 @@ def solve_captcha(captcha_id: str = CAPTCHA_ID, max_retries: int = 10) -> dict:
             data = json.loads(resp.text.split(f"{callback}(")[1].rstrip(")"))["data"]
             lot_number = data["lot_number"]
 
-            # 2. 构建 w 参数（使用 GeekedTest 的 Signer）
+            # 2. 构建 w 参数
             sleep_random(2000, 4000)
             pow_detail = data["pow_detail"]
             pt = data.get("pt", "1")
