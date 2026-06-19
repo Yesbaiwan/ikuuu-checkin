@@ -1,5 +1,5 @@
 """
-极验 V4 验证码解决器 + ikuuu.org 登录
+极验 V4 验证码解决器 + ikuuu.win 登录
 """
 
 import json
@@ -49,7 +49,7 @@ def load_accounts_from_env() -> list[dict]:
 ACCOUNTS = load_accounts_from_env()
 
 CAPTCHA_ID = "cc96d05ba8b60f9112f76e18526fcb73"
-LOGIN_URL = "https://ikuuu.org/auth/login"
+LOGIN_URL = "https://ikuuu.win/auth/login"
 OUTPUT_DIR = ".output"  # Cookie 输出目录
 
 
@@ -166,7 +166,7 @@ def solve_captcha(captcha_id: str = CAPTCHA_ID, max_retries: int = 10) -> dict:
 
 def login(email: str, password: str) -> dict:
     """
-    登录 ikuuu.org
+    登录 ikuuu.win
     返回 {"success": True, "cookies": "..."} 或 {"success": False, "error": "..."}
     """
     # 1. 解决验证码
@@ -181,7 +181,7 @@ def login(email: str, password: str) -> dict:
         resp = client.post(
             LOGIN_URL,
             data={
-                "host": "ikuuu.org",
+                "host": "ikuuu.win",
                 "email": email,
                 "passwd": password,
                 "code": "",

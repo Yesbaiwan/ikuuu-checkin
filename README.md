@@ -1,9 +1,8 @@
-# ikuuu.org 登录签到分析
-
-- login.py: 实现登录，获取账号 Cookie（内置极验 V4 验证码解决）
-- checkin.py: 用 Cookie 签到
+# ikuuu 登录签到
 
 ## 运行
+
+**Python:**
 
 ```bash
 uv sync
@@ -11,21 +10,27 @@ uv run src/login.py
 uv run src/checkin.py
 ```
 
-## 注意事项
+**Cloudflare Workers:**
 
-- 先运行 `login.py` 获取 Cookie，再运行 `checkin.py` 签到
-- 请求过快会失败，且不保证登录百分百成功
-- 项目仅用于学习使用
+1. [新建 Worker](https://dash.cloudflare.com/)，粘贴 `src/worker.js` 代码并部署
+2. 设置 → 触发事件 → 添加 Cron 触发器，表达式 `0 8 * * *`（北京时间下午 4 点）
 
 ## 项目结构
 
 ```
-ikuuu-checkin/
-├── src/                           # 源码
-│   ├── login.py                   # 获取 Cookie
-│   ├── checkin.py                 # 签到
-│   └── signer.py                  # 极验 V4 w 参数加密
-├── .env.example                   # 环境变量示例
-├── pyproject.toml                 # Python项目配置
-└── requirements.txt               # 依赖
+├── src/
+│   ├── login.py    # 登录（含极验 V4 验证码解决）
+│   ├── checkin.py  # 签到
+│   ├── signer.py   # 加密
+│   └── worker.js   # Workers 单文件版
+└── .env            # 账号配置
 ```
+
+## ikuuu 域名
+
+> 研究过程中收集的域名，部分可能已失效
+
+- `ikuuu.win`
+- `ikuuu.fyi`
+- `ikuuu.de`
+- `ikuuu.org`

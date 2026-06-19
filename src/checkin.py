@@ -1,5 +1,5 @@
 """
-ikuuu.org 自动签到
+ikuuu.win 自动签到
 使用保存的Cookie进行批量签到
 """
 
