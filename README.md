@@ -2,17 +2,17 @@
 
 ## 运行
 
-**Python:**
-
 ```bash
+cp .env.example .env
+# 修改 .env 中的账号密码
 uv sync
 uv run src/login.py
 uv run src/checkin.py
 ```
 
-**Cloudflare Workers:**
+## Cloudflare Worker 部署
 
-1. [新建 Worker](https://dash.cloudflare.com/)，粘贴 `src/worker.js` 代码并部署
+1. 前往 [Cloudflare](https://dash.cloudflare.com) 新建 Worker，粘贴 `src/worker.js` 代码并部署（修改账号密码）
 2. 设置 → 触发事件 → 添加 Cron 触发器，表达式 `0 8 * * *`（北京时间下午 4 点）
 
 ## 项目结构
